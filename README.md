@@ -10,6 +10,8 @@ conda
 
 ## USAGE
 command on how to use...
+Inside the DIANA-RSeq directory:
+`snakemake --use-conda`
 
 ### CONFIGURATION
 how to configure
