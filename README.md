@@ -1,15 +1,17 @@
 # DIANA-RSeq
-DIANA-RSeq is a fully automated computational RNA-Seq analysis pipeline that allows for RNA quantification through a modular, scalable and easy to use multi-option tool.
+DIANA-RSeq is a fully automated computational RNA-Seq analysis pipeline that allows for RNA quantification through a modular, scalable and easy to use multi-option tool. It aims to streamline and automate the RNA analysis process from raw RNA-Seq data to quantified expression results. The tool is composed of multiple standalone modules that comprise the data acquisition, pre-processing, alignment, quantification and quality control steps of the analysis. 
 
-The tools is free to use under MIT licencse utilizing Conda on Unix based systems.
+The alignment and the quantification modules provide multiple options on the software utilized, allowing for flexibility and choice in the balance between quality and required computational time. Among the options, the analysis using the Salmon software is suggested for well annotated organisms as a computationally cheap and reliable approach, while the use of STAR aligner coupled with RSEM is suggested for a more thorough but also slower analysis approach followed by major organizations such as ENCODE.
 
-DIANA-RSeq was funded by “ELIXIR-GR: The Greek Research Infrastructure for Data Management and Analysis in Life Sciences” (MIS 5002780) which is implemented under the Action “Reinforcement of the Research and Innovation Infrastructure”, funded by the Operational Programme “Competitiveness, Entrepreneurship and Innovation” (NSRF 2014-2020) and co-financed by Greece and the European Union (European Regional Development Fund)
+The tool has been developed using Snakemake and utilizes Conda to eliminate the dependency installation. It is free to use under MIT licencse on Unix based systems.
+
+DIANA-RSeq was funded by “ELIXIR-GR: The Greek Research Infrastructure for Data Management and Analysis in Life Sciences” (MIS 5002780) which is implemented under the Action “Reinforcement of the Research and Innovation Infrastructure”, funded by the Operational Programme “Competitiveness, Entrepreneurship and Innovation” (NSRF 2014-2020) and co-financed by Greece and the European Union (European Regional Development Fund).
 
 ## INSTALLATION
-Installation of DIANA-RSeq is completed in three steps:
+Installation of DIANA-RSeq is composed of three simple steps:
 1. Download DIANA-RSeq through this reposiroty and uncompress it.
-2. Install Conda on your system by following the [Conda Installation Guide](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html)
-3. Install Snakemake (also available through Conda) by following the [Snakemake Installation Guide](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html)
+2. Install Conda on your system by following the [Conda Installation Guide](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html).
+3. Install Snakemake (also available through Conda) by following the [Snakemake Installation Guide](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html).
 
 ## USAGE
 Through a terminal located inside the DIANA-RSeq directory use the command:
@@ -21,7 +23,7 @@ or for a "dry-run" only showing the Snakemake rules that will be run without run
 `snakemake --use-conda -n`
 
 ## CONFIGURATION
-DIANA-RSeq is accompanied by two configuration files:
+DIANA-RSeq is accompanied by two configuration files located inside the "config" sub-folder:
 1. The "samples.csv" file containing a sample_id column containing the IDs of samples to be analyzed. An example "samples.csv" file is located in the config folder.
 2. The "config.yml" file containing all the configuration options available to the pipeline in general as well as the specific modules.
 
