@@ -77,10 +77,12 @@ trim_options: "--quality 10 --length 20 --consider_already_trimmed 10" # optiona
 </br>
 
 ### Alignment Module
-The Alignment module maps the input files to a provided genome reference file. It uses the Star aligner software and also generates a Star index of the reference genome in case an index is not found in the appropriate directory provided in the configuration file. In order to improve the required computational time the module utilizes Star's shared-genome-index option, loading the index on the computer's RAM only once thus avoiding index loading times for multiple alignments (about 35GB of RAM are required for loading a typical Human genome, see Star's documentation for more info). Bam alignment files for both genome and transcriptome are generated and the genome aligned bam files are also sorted using the Samtools software.
+The Alignment module maps the input files to a provided genome reference file. It uses the STAR aligner software and also generates a STAR index of the reference genome in case an index is not found in the appropriate directory provided in the configuration file. In order to improve the required computational time the module utilizes STAR's shared-genome-index option, loading the index on the computer's RAM only once thus avoiding index loading times for multiple alignments (about 35GB of RAM are required for loading a typical Human genome, see STAR's documentation for more info). Bam alignment files for both genome and transcriptome are generated and the genome aligned bam files are also sorted using the Samtools software.
+
+_Please note that if the STAR index is provided, **it must have been created using the exact same reference genome and annotation provided** through the configuration for the rest of the analysis._
 
 **Software Used:**
-Star (2.7.8a), Samtools (1.12)
+STAR (2.7.8a), Samtools (1.12)
 
 **Configuration Options:**
 ```
@@ -104,15 +106,17 @@ genome_index_params: "--limitGenomeGenerateRAM 50000000000 --genomeSAsparseD 1" 
 
 (sample_id from "samples.csv" file, data_dir-fqext1/2-fqsuffix from Configuration file)
 
-**Expected output:** Star Index files for the genome (if not provided), Bam alignment files on both genome and transcriptome for each sample input, Logs for all the above
+**Expected output:** STAR Index files for the reference genome (if not provided), Bam alignment files on both genome and transcriptome for each sample input, Logs for all the above
 
 </br>
 
 ### Quantification Module
-what it does
+The Quantification module infers the strandedness of each sample input and employes one of: Salmon, RSEM, featurecounts and STAR softwares to quantify the gene-level (and transcript-level for RSEM and Salmon) expression values of each sample. The quantifiers RSEM and Salmon also require an index which will be automatically created, using the provided reference genome and annotation, if not found in the appropriate directory provided in the configuration file.
+
+_Please note that if an index is provided, **it must have been created using the exact same reference genome and annotation provided** through the configuration for the rest of the analysis._
 
 **Software Used:**
-Star (2.7.8a), Samtools (1.12)
+UCSC-gtfToGenePred (377), UCSC-gff3ToGenePred (377), UCSC-genePredToBed (377), RSeQC (3.0.1), Subread (2.0.1), RSEM (1.3.3), Salmon (1.4.0), Bedtools (2.28), Mashmap (2.0), gffread (0.12.1), bioconductor-tximport (1.18), bioconductor-genomicfeatures (1.42.2), R (4.0.3), R-readr (1.4.0)
 
 **Configuration Options:**
 ```
@@ -123,20 +127,31 @@ quant_params: " " # Quantifier specific parameter options, please refer to the q
 quant_index: /path/to/quantier/index/directory # (ONLY used by quantifiers RSEM and Salmon) Quantification index directory, RSEM also requires the index prefix in this parameter (e.g. /path/to/quantier/index/directory/prefix). If the quantifier requires an index and it is not detected here, it will be created using annotation_file and genome_fasta. If provided, it must have been created using the exact same genome and annotation files used for the alignment index to avoid biased/incorrect results.
 ```
 
-**Expected input:**
-- Single-End: {data_dir}/{sample_id}.{fqsuffix}.gz
-- Paired-End: {data_dir}/{sample_id}\_{fqext1}.{fqsuffix}.gz , {data_dir}/{sample_id}\_{fqext2}.{fqsuffix}.gz
+**Expected input:** {data_dir}/{sample_id}.bam  (sample_id from "samples.csv" file, for RSEM please provide an appropriate aligned-to-transcriptome .bam file)
 
-(sample_id from "samples.csv" file, data_dir-fqext1/2-fqsuffix from Configuration file)
+**Expected output:** Converted .bed file from the annotation file provided, Inferred strandedness report for each input sample, Quantifier Index files for the reference genome (if not provided), Gene-level (and Transcript-level for RSEM and Salmon) quantification files, Logs for all the above
 
-**Expected output:** Star Index files for the genome (if not provided), Bam alignment files on both genome and transcriptome for each sample input, Logs for all the above
+</br>
 
 ### Quality Control Module
-what it does
-what tools are used (versions)
-options available
-expected input
-expected output
+The Quality Control module provides a number of quality control information about each sample. Namely it provides alignment file (.bam) statistics, read duplication check and marking, read distribution, read inner distance, junction saturation and annotation.
+
+**Software Used:**
+Picard (2.25.1), RSeQC (3.0.1)
+
+**Configuration Options:**
+```
+afterqc: true # Flag to perform the After QC step or not.
+
+junction_analysis: true # Perform Junction-Annotation and -Saturation analysis using RSeQC (v3.0.1), please refer to RSeQC's documentation for more information
+annotation_bed_file: /path/to/bed-12/annotation/file.bed # A 12-column BED file from the exact annotation used in the samples' upstream analysis. If quantification module is executed a .bed file is automatically generated from the annotation file given, otherwise please provide an annotation .bed file for the QC analysis (ucsc-gtftogenepred/ucsc-gff3togenpred + ucsc-genepredtobed are proposed for a GTF/GFF3 conversion to a proper 12-column bed file) (required for Read_distribution, Inner_distance and Junction analyses)
+```
+
+**Expected input:** {data_dir}/{sample_id}.bam  (sample_id from "samples.csv" file, please provide a sorted aligned-to-genome .bam file)
+
+**Expected output:** Picard marked duplicates statistics, Bam file statistics, Read duplication statistics, Read distribution statistics, Junction saturation statistics (only if junction_analysis is true), Junction annotation statistics (only if junction_analysis is true), Read inner distance statistics (only for Paired-end samples), Logs for all the above
+
+</br>
 
 ### Summary Report
 A summary report html file is generated at the end of every analysis regardless of the modules used. We utilize MultiQC (1.10) to create graphs from almost all the analysis steps performed, providing a quick overview of the results with advanced filtering capabilities. Please visit the [MultiQC documentation](https://multiqc.info/docs/#using-multiqc-reports) for further information.
