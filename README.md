@@ -3,6 +3,8 @@ DIANA-RSeq is a fully automated computational RNA-Seq analysis pipeline that all
 
 The alignment and the quantification modules provide multiple options on the software utilized, allowing for flexibility and choice in the balance between quality and required computational time. Among the options, the analysis using the Salmon software is suggested for well annotated organisms as a computationally cheap and reliable approach, while the use of STAR aligner coupled with RSEM is suggested for a more thorough but also slower analysis approach followed by major organizations such as ENCODE.
 
+![Pipeline Overview](RNA-Seq_pipeline_overview.jpeg)
+
 The tool has been developed using Snakemake and utilizes Conda to eliminate the dependency installation. It is free to use under MIT licencse on Unix based systems.
 
 DIANA-RSeq was funded by “ELIXIR-GR: The Greek Research Infrastructure for Data Management and Analysis in Life Sciences” (MIS 5002780) which is implemented under the Action “Reinforcement of the Research and Innovation Infrastructure”, funded by the Operational Programme “Competitiveness, Entrepreneurship and Innovation” (NSRF 2014-2020) and co-financed by Greece and the European Union (European Regional Development Fund).
