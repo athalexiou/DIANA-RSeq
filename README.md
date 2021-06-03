@@ -19,13 +19,17 @@ Installation of DIANA-RSeq is composed of three simple steps:
    3. Install Snakemake inside the new environment with: `conda install snakemake` and you are now ready to run your analysis!
 
 ## USAGE
-Through a terminal located inside the DIANA-RSeq directory use the command:
+Open a new terminal located inside the DIANA-RSeq directory.
 
-`snakemake --use-conda`
-
-or for a "dry-run" only showing the Snakemake rules that will be run without running them (see [Snakemake documentation](https://snakemake.readthedocs.io/en/stable/index.html) for more on dry-runs) use:
+Test everything is working correctly using the command:
 
 `snakemake --use-conda -n`
+
+The above command executes a "dry-run" only showing the Snakemake rules that will be run without actually running them (see [Snakemake documentation](https://snakemake.readthedocs.io/en/stable/index.html) for more on dry-runs).
+
+Once you have made the proper configurations explained below, run your analysis using the command below by providing the desired number of cores to be utilized:
+
+`snakemake --use-conda --cores 20`
 
 ## CONFIGURATION
 DIANA-RSeq is accompanied by two configuration files located inside the "config" sub-folder:
