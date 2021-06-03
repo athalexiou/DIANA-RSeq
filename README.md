@@ -14,9 +14,9 @@ Installation of DIANA-RSeq is composed of three simple steps:
 1. Download DIANA-RSeq through this reposiroty and uncompress it.
 2. Install Conda on your system by following the [Conda Installation Guide](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html).
 3. Create a new Conda Environment with Python 3.6 and install Snakemake in it.
-  1. Create a new Conda Environment with Python 3.6 with: `conda create --name diana_rseq python=3.6`
-  2. Activate the new environment with: `conda activate diana_rseq`
-  3. Install Snakemake inside the new environment with: `conda install snakemake` and you are now ready to run your analysis!
+   1. Create a new Conda Environment with Python 3.6 with: `conda create --name diana_rseq python=3.6`
+   2. Activate the new environment with: `conda activate diana_rseq`
+   3. Install Snakemake inside the new environment with: `conda install snakemake` and you are now ready to run your analysis!
 
 ## USAGE
 Through a terminal located inside the DIANA-RSeq directory use the command:
