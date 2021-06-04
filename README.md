@@ -13,10 +13,11 @@ DIANA-RSeq was funded by “ELIXIR-GR: The Greek Research Infrastructure for Dat
 Installation of DIANA-RSeq is composed of three simple steps:
 1. Download DIANA-RSeq through this reposiroty and uncompress it.
 2. Install Conda on your system by following the [Conda Installation Guide](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html).
-3. Create a new Conda Environment with Python 3.6 and install Snakemake in it.
-   1. Create a new Conda Environment with Python 3.6 with: `conda create --name diana_rseq python=3.6`
+3. Create a new Conda Environment and install Snakemake in it.
+   1. Create a new Conda Environment with Python 3.6 with: `conda create --name diana_rseq`
    2. Activate the new environment with: `conda activate diana_rseq`
-   3. Install Snakemake inside the new environment with: `conda install snakemake` and you are now ready to run your analysis!
+   3. Install Snakemake inside the new environment with: `conda install -c bioconda -c conda-forge snakemake`
+   4. Install Mamba dependency installer with: `conda install -c conda-forge mamba` and you are now ready to run your analysis!
 
 ## USAGE
 Open a new terminal located inside the DIANA-RSeq directory.
@@ -110,6 +111,10 @@ genome_fasta: /path/to/genome/fasta/file.fa
 genome_sizes_file: /path/to/genome/sizes/file.fa.fai # Provide the .sizes or .fai genome file containing chromosome/contig sizes 
 genome_index_params: "--limitGenomeGenerateRAM 50000000000 --genomeSAsparseD 1" # Aligner specific parameter options for alignment index generation, please refer to the aligner documentation for available options
 ```
+
+Note: In case a sizes file is not present with your genome fasta file, you can create one from the genome fasta file using the command below:
+
+`cat <genome_fasta_file> | awk '$0 ~ ">" {if (NR > 1) {print c;} c=0;printf substr($0,2,100) "\t"; } $0 !~ ">" {c+=length($0);} END { print c; }' > <genome_sizes_file>`
 
 **Expected input:**
 - Single-End: {data_dir}/{sample_id}.{fqsuffix}.gz
