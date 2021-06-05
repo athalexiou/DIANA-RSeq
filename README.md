@@ -129,6 +129,8 @@ Note: In case a sizes file is not present with your genome fasta file, you can c
 ### Quantification Module
 The Quantification module infers the strandedness of each sample input and employes one of: Salmon, RSEM, featurecounts and STAR softwares to quantify the gene-level (and transcript-level for RSEM and Salmon) expression values of each sample. The quantifiers RSEM and Salmon also require an index which will be automatically created, using the provided reference genome and annotation, if not found in the appropriate directory provided in the configuration file.
 
+When using the Salmon option, if the Alignment module is included in the analysis (alignment = true), Salmon is using the alignment-based mode which quantifies the output .bam files from the Alignment module (in this mode a Salmon index is not required). If the Alignment module is set to false, Salmon is used in mapping-mode which utilizes Salmon's fast alignment followed by quantification (in this mode a Salmon index is required and if not provided, a decoy-aware index is generated using the genome_fasta and the annotation_file).
+
 _Please note that if an index is provided, **it must have been created using the exact same reference genome and annotation provided** through the configuration for the rest of the analysis._
 
 **Software Used:**
