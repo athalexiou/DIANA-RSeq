@@ -154,7 +154,7 @@ quant_index: /path/to/quantier/index/directory # (ONLY used by quantifiers RSEM 
 ### Quality Control Module
 The Quality Control module provides a number of quality control information about each sample. Namely it provides alignment file (.bam) statistics, read duplication check and marking, read distribution, read inner distance, junction saturation and annotation.
 
-_Please note that this module requires an aligned-to-genome .bam file in order to produce the statistics. Therefore please set the "afterqc" option to false when using Salmon in mapping-mode (see Quantification module description)._
+_Please note that this module requires an aligned-to-genome .bam file in order to produce the statistics. Therefore please set the "afterqc" option to false when using Salmon in mapping-mode (see Quantification module description) as it does not produce such an output._
 
 **Software Used:**
 Picard (2.25.1), RSeQC (3.0.1)
