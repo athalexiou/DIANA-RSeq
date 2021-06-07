@@ -112,9 +112,9 @@ genome_sizes_file: /path/to/genome/sizes/file.fa.fai # Provide the .sizes or .fa
 genome_index_params: "--limitGenomeGenerateRAM 50000000000 --genomeSAsparseD 1" # Aligner specific parameter options for alignment index generation, please refer to the aligner documentation for available options
 ```
 
-Note: In case a sizes file is not present with your genome fasta file, you can create one from the genome fasta file using the command below:
+Note: In case a sizes file is not present with your genome fasta file, you can create one from the genome fasta file using the Samtools software with the command below:
 
-`cat {genome_fasta_file} | awk '$0 ~ ">" {if (NR > 1) {print c;} c=0;printf substr($0,2,100) "\t"; } $0 !~ ">" {c+=length($0);} END { print c; }' > {genome_sizes_file}`
+`samtools faidx {genome_fasta_file}`
 
 **Expected input:**
 - Single-End: {data_dir}/{sample_id}.{fqsuffix}.gz
