@@ -54,7 +54,7 @@ SRA-tools (2.10.1)
 
 **Configuration Options:**
 ```
-getdata: false  # Flag to perform the Data Acquisition step using SRA-tools or not. This step will download the samples from SRA in the data_dir
+getdata: true  # Flag to perform the Data Acquisition step using SRA-tools or not. This step will download the samples from SRA in the data_dir
 
 getdata_options: "-X 50000" # Optional parameters for SRA-tools (v2.10.1), for available options please visit the SRA-tools documentation
 ```
