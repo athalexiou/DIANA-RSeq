@@ -30,7 +30,7 @@ The above command executes a "dry-run" only showing the Snakemake rules that wil
 
 Once you have made the proper configurations explained below, run your analysis using the command below by providing the desired number of cores to be utilized:
 
-`snakemake --use-conda --cores 20`
+`snakemake --use-conda --cores {number_of_cores}`
 
 ## CONFIGURATION
 DIANA-RSeq is accompanied by two configuration files located inside the "config" sub-folder:
