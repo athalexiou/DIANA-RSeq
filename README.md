@@ -43,7 +43,10 @@ The general configuration options include:
 
 Both configuration files are validated through schemas. For more information see the appropriate schema file under the "workflow/schemas" directory.
 
-Due to the high volume nature of the data that are usually analysed, DIANA-RSeq deletes a number of intermediate result files once they are no longer required by remaining analysis steps/rules. The _**trimmed .fastq files**_ and _**all .bam files**_ are progressively deleted throught the analysis. If you wish to override this directive and keep these files after the end of the analysis please add the "**--notemp**" flag when running the snakemake analysis command e.g.:
+
+**Warning:**</br>
+Due to the big size of the data that are usually analysed, DIANA-RSeq deletes a number of intermediate result files once they are no longer required by remaining analysis steps/rules.</br>
+The _**trimmed .fastq files**_ and _**all .bam files**_ are progressively deleted throught the analysis. If you wish to override this directive and keep these files after the end of the analysis (it will require a lot of extra disk space) please add the "**--notemp**" flag when running the snakemake analysis command e.g.:
 
 `snakemake --use-conda --notemp --cores {number_of_cores}`
 
