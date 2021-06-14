@@ -178,7 +178,7 @@ A summary report html file is generated at the end of every analysis regardless 
 
 
 ## OUTPUT
-DIANA-RSeq produces numerous outputs organized in the following structure.
+DIANA-RSeq produces numerous outputs organized in the following structure:
 
 **{results_directory}/**
 - preprocess/ &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(folder containing the Pre-process module results)
