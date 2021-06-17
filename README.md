@@ -188,31 +188,31 @@ A summary report html file is generated at the end of every analysis regardless 
 DIANA-RSeq produces numerous outputs, some of which will be automatically deleted throught the analysis progress so as to preserve disk space (see the [**CONFIGURATION**](#configuration) section). The complete list of output files produced are organized in the following structure:
 
 **{results_directory}/**
-- preprocess/ &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(folder containing the Pre-process module results)
+- preprocess/ &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
    - fastq_trimmed/ &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(the trimmed .fastq files produced by TrimGalore)
    - fastqc_data/ &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(the data produced by FastQC for each sample, organized in "raw" and "trimmed" folders)
    - fastqc_reports/ &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(the FastQC reports for each sample, organized in "raw" and "trimmed" folders)
    - trimming_reports/ &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(the TrimGalore/Cutadapt trimming reports for each sample)
-- alignemnt/ &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(folder containing the Alignment module results)
+- alignment/ &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
    - {aligner}/
       - {genome-assembly}-{sample}/ &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(a folder for each sample with the genome_assembly prefix)
          - _.bam and other files_ by the {aligner} software
          - _*markedDuplicates.bam_ by Picard (only if the Quality Control module is invoced in the analysis)
          - _*strandedness-infer_experiment.txt_ by RSeQC (only if the Quantification module is invoced in the analysis)
-- quantification/ &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(folder containing the Quantification module results)
+- quantification/ &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
    - annotation_bed/ &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(a folder that contains the .bed file created from the annotation_file)
    - {quantifier}/
       - {genome-assembly}-{sample}/ &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(a folder for each sample with the genome_assembly prefix)
          - _*.genes.results_ containing the gene-level quantification results for the sample
          - _*.transcripts.results_ containing the transcript-level quantification results for the sample (only available for Salmon and RSEM quantifier options)
          - other {quantifier}-specific result files for the sample
-- afterqc/ &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(folder containing the Quality Control module results)
+- afterqc/ &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
    - picard/ &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(a _*marked_duplicates_metrics.txt_ file for each sample)
    - rseqc/
       - {sample}/ &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(a folder for each sample)
          - RSeQC result files for the sample
 - intermediate/ &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(folder containing the multiQC software data required for the summary reports)
-- logs/ &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(folder containing the logs from all module results structured as per the above folders)
+- logs/ &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 - analysis_rulegraph.png &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(an analysis workflow graph depicting the snakemake rules order of execution and interconnection)
 - multiqc_raw.html &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(the multiQC report for the raw .fastq files produced by the Pre-processing Module)
 - multiqc_preprocess.html &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(the multiQC report for the pre-processed .fastq files produced by the Pre-processing Module)
