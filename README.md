@@ -150,7 +150,7 @@ quantification: true # Flag to perform the Quantification step or not.
 
 quantifier: salmon # Available options= [featurecounts, rsem, star, salmon]  (the "star" option is only available in conjunction with the execution of the alignment module using the aligner "star", moreover the quant_params are not used with this option)
 quant_params: " " # Quantifier specific parameter options, please refer to the quantifier documentation for available options
-quant_index: /path/to/quantier/index/directory # (ONLY used by quantifiers RSEM and Salmon) Quantification index directory, RSEM also requires the index prefix in this parameter (e.g. /path/to/quantier/index/directory/prefix). If the quantifier requires an index and it is not detected here, it will be created using annotation_file and genome_fasta. If provided, it must have been created using the exact same genome and annotation files used for the alignment index to avoid biased/incorrect results.
+quant_index: /path/to/quantifier/index/directory # (ONLY used by quantifiers RSEM and Salmon) Quantification index directory, RSEM also requires the index prefix in this parameter (e.g. /path/to/quantifier/index/directory/prefix). If the quantifier requires an index and it is not detected here, it will be created using annotation_file and genome_fasta. If provided, it must have been created using the exact same genome and annotation files used for the alignment index to avoid biased/incorrect results.
 ```
 
 **Expected input:** {data_dir}/{sample_id}.bam  (sample_id from "samples.csv" file, for RSEM please provide an appropriate aligned-to-transcriptome .bam file)
