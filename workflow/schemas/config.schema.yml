@@ -1,0 +1,127 @@
+$schema: "http://json-schema.org/draft-06/schema#"
+
+description: snakemake configuration file
+
+type: object
+
+properties:
+  samples_file:
+    description: path to sample input file containing sample names/identifiers
+    default: config/samples.csv
+    type: string
+  result_dir:
+    description: path to prefered result directory (no "/" at the end)
+    default: results
+    type: string
+  data_dir:
+    description: path to prefered input data directory (no "/" at the end)
+    default: data
+    type: string
+  sample_layouts:
+    description: samples layout, PE for paired-end or SE for single-end
+    default: PE
+    enum: [PE, SE]
+    type: string
+  fqext1:
+    description: fastq file forward strand extention e.g. SRR1234_1.fastq (applicable only when sample_layouts = PE)
+    default: 1
+    type: [string, number]
+  fqext2:
+    description: fastq file reverse strand extention e.g. SRR1234_2.fastq (applicable only when sample_layouts = PE)
+    default: 2
+    type: [string, number]
+  fqsuffix:
+    description: fastq file suffix extention e.g. SRR1234.fastq or SRR1234.fq
+    default: fastq
+    enum: [fastq, fq]
+    type: string
+
+  getdata:
+    description: flag for the Data Acquisition module execution
+    default: false
+    type: boolean
+  getdata_options:
+    description: optional parameters for the SRA-tools (v2.10.1), for available options please visit the SRA-tools documentation
+    default: " "
+
+  preprocess:
+    description: flag for the Preprocess module execution
+    default: true
+    type: boolean
+  trim_options:
+    description: optional parameters for TrimGalore (v0.6.6), for available options please visit the TrimGalore documentation
+    default: " "
+
+  alignment:
+    description: flag for the Alignment module execution
+    default: true
+    type: boolean
+  aligner:
+    description: aligner software selection
+    default: star
+    enum: [star]
+    type: string
+  alignment_index_dir:
+    description: path to alignment index directory, must have been created using the selected aligner using a genome fasta and an annotation file (no "/" at the end). If no index is found, it will be created using the genome parameters below
+    default: resources
+    type: string
+  genome_assembly:
+    description: the name of the genome assembly version used in the index above e.g. GRCh38 or hg19
+    default: "Genome_assembly"
+  annotation_file:
+    description: the path to the uncompressed .gtf/.gff3 annotation file (must be the same used in genome index creation, will be used in genome index creation)
+    default: " "
+  align_params:
+    description: aligner specific parameter options, please refer to the aligner documentation for available options
+    default: " "
+  genome_fasta:
+    description: the path to the genome fasta file used to create an index using the selected aligner. Only required if no genome index is found in the genome_index_dir
+    default: " "
+  genome_sizes_file:
+    description: the path to the genome .sizes or .fai file. Only required if no genome index is found in the genome_index_dir
+    default: " "
+  genome_index_params:
+    description: aligner specific parameter options for alignment index generation, please refer to the aligner documentation for available options
+    default: " "
+
+  quantification:
+    description: flag for the Quantification module execution
+    default: true
+    type: boolean
+  quantifier:
+    description: quantifier software selection (the "star" option is only available in conjunction with the execution of the alignment module using the aligner "star")
+    default: featurecounts
+    enum: [featurecounts, rsem, star, salmon]
+    type: string
+  quant_params:
+    description: quantifier specific parameter options, please refer to the quantifier documentation for available options
+    default: " "
+  quant_index:
+    description: (ONLY used by quantifiers RSEM and Salmon) Quantification index directory, RSEM also requires the index prefix in this parameter (e.g. /my/index/location/prefix). If the quantifier requires one and is not detected here, it will be created using annotation_file and genome_fasta. If provided, it must have been created using the exact same genome and annotation files used for the alignment index to avoid biased/incorrect results
+    default: resources
+    type: string
+
+  afterqc:
+    description: flag for the AfterQC module execution
+    default: true
+    type: boolean
+  junction_analysis:
+    description: flag for the execution of Junction-annotation and Junction-saturation analysis using RSeQC (v3.0.1)
+    default: true
+    type: boolean
+  annotation_bed_file:
+    description: the path to a 12-column BED file from the exact annotation used in the upstream analysis (alignement, quantification). If quantification module is executed a .bed file is automatically generated from the annotation file given, otherwise ucsc-gtftogenepred/ucsc-gff3togenpred + ucsc-genepredtobed are proposed for a GTF/GFF3 conversion to a proper 12-column bed file
+    default: " "
+
+required:
+  - result_dir
+  - data_dir
+  - getdata
+  - preprocess
+  - alignment
+  - quantification
+  - afterqc
+
+
+
+

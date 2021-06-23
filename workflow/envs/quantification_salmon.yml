@@ -1,0 +1,9 @@
+channels:
+  - bioconda
+  - conda-forge
+  - main
+dependencies:
+  - gffread = 0.12.1
+  - bedtools = 2.28
+  - mashmap = 2.0
+  - salmon = 1.4.0

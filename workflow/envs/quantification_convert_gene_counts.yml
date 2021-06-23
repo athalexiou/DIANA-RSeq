@@ -1,0 +1,10 @@
+channels:
+  - bioconda
+  - conda-forge
+  - main
+dependencies:
+  - conda-forge::r-base=4.0.3
+  - bioconda::bioconductor-tximport=1.18
+  - bioconda::bioconductor-genomicfeatures=1.42.2
+  - conda-forge::r-readr=1.4.0
+  - gffread = 0.12.1
