@@ -1,7 +1,0 @@
-channels:
-  - bioconda
-  - conda-forge
-  - main
-dependencies:
-  - picard = 2.25.1
-  - rseqc = 3.0.1
