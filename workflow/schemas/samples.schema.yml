@@ -1,0 +1,10 @@
+$schema: "http://json-schema.org/draft-06/schema#"
+
+description: an entry in the samples sheet
+properties:
+  sample_id:
+    type: string
+    description: sample name/identifier
+
+required:
+  - sample_id

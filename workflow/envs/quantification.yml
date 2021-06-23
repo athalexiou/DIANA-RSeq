@@ -1,0 +1,9 @@
+channels:
+  - bioconda
+  - conda-forge
+  - main
+dependencies:
+  - ucsc-gtftogenepred = 377
+  - ucsc-gff3togenepred = 377
+  - ucsc-genepredtobed = 377
+  - rseqc = 3.0.1
