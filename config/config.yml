@@ -1,7 +1,7 @@
 ### GENERAL ####
 samples_file: config/samples.csv
-result_dir: results
-data_dir: data
+result_dir: /path/to/results/directory
+data_dir: /path/to/input/data/directory
 
 sample_layouts: PE # PE for paired-end or SE for single-end layout
 fqext1: 1 # E.g for a file named "SRR583892_1.fastq" the fqext1 is 1
