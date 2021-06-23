@@ -34,19 +34,20 @@ Once you have made the proper configurations explained below, run your analysis 
 
 ## CONFIGURATION
 DIANA-RSeq is accompanied by two configuration files located inside the "config" sub-folder:
-1. The "samples.csv" file containing a sample_id column containing the IDs of samples to be analyzed. An example "samples.csv" file is located in the config folder.
+1. The "samples.csv" file containing a sample_id column with the IDs of samples to be analyzed. (An example "samples.csv" file is located in the config folder)
 2. The "config.yml" file containing all the configuration options available to the pipeline in general as well as the specific modules.
 
 The general configuration options include:
 - The absolute or relative (from Snakefile) directory of the "samples.csv" file, the results directory where the results are saved and finally the data directory where the sample data file inputs are expected to be.
-- The fastq files information, such as their suffix and extentions, and also the layout of the sample whether it is Single or Paired-end. This information is only used when .fastq files are utilized for the analysis.
+- The fastq files information, such as their suffix and extentions, and also their layout whether they are Single or Paired-end. This information is only used when .fastq files are utilized for the analysis.
 
+Information on the configuration options of individual modules can be found on each module below.
 Both configuration files are validated through schemas. For more information see the appropriate schema file under the "workflow/schemas" directory.
 
 
 **Warning:**</br>
-Due to the big size of the data that are usually analysed, DIANA-RSeq deletes a number of intermediate result files once they are no longer required by remaining analysis steps/rules.</br>
-The _**trimmed .fastq files**_ and _**all .bam files**_ are progressively deleted throught the analysis. If you wish to override this directive and keep these files after the end of the analysis (it will require a lot of extra disk space) please add the "**--notemp**" flag when running the snakemake analysis command e.g.:
+Due to the very big size of the data that are usually analysed, DIANA-RSeq deletes a number of intermediate result files once they are no longer required by remaining analysis steps/rules.</br>
+The _**trimmed .fastq files**_ and _**all .bam files**_ are progressively deleted throughtout the analysis. If you wish to override this directive and keep these files after the end of the analysis (it will require a lot of extra disk space) please add the "**--notemp**" flag when running the snakemake analysis command e.g.:
 
 `snakemake --use-conda --notemp --cores {number_of_cores}`
 
