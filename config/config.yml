@@ -28,7 +28,7 @@ alignment: true # Flag to perform the Alignment step or not.
 aligner: star # Available options= [star]
 alignment_index_dir: /path/to/star/index/directory
 genome_assembly: GRCh38 # The name of the assembly used e.g. "GRCh38". This will be used in naming for distinction puproses on the result files
-annotation_file: /path/to/annotation/file # Uncompressed (.gtf/.gff3)
+annotation_file: /path/to/annotation/file # Uncompressed (.gtf/.gff3) Please provide a .gtf wherever possible. Tested with Gencode, Ensembl and RefSeq annotations.
 align_params: " " # Aligner specific parameter options, please refer to the aligner documentation for available options
 
 # Parameters for index generation. If an index is not found in the alignment_index_dir, an "/{genome_assembly}-{aligner}_index" subdirectory will be created and these will be used to generate one using the provided aligner
