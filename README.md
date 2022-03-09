@@ -19,23 +19,20 @@ Installation of DIANA-RSeq is composed of three simple steps:
    3. Install Snakemake inside the new environment with: `conda install -c bioconda -c conda-forge snakemake`
    4. Install Mamba dependency installer with: `conda install -c conda-forge mamba` and you are now ready to run your analysis!
 
-## USAGE
-Open a new terminal located inside the DIANA-RSeq directory.
-
-Test everything is working correctly using the command:
-
-`snakemake --use-conda -n`
-
-The above command executes a "dry-run" only showing the Snakemake rules that will be run without actually running them (see [Snakemake documentation](https://snakemake.readthedocs.io/en/stable/index.html) for more on dry-runs).
-
-Once you have made the proper configurations explained below, run your analysis using the command below by providing the desired number of cores to be utilized:
-
-`snakemake --use-conda --cores {number_of_cores}`
 
 ## CONFIGURATION
 DIANA-RSeq is accompanied by two configuration files located inside the "config" sub-folder:
 1. The "samples.csv" file containing a sample_id column with the IDs of samples to be analyzed. (An example "samples.csv" file is located in the config folder)
 2. The "config.yml" file containing all the configuration options available to the pipeline in general as well as the specific modules.
+
+For your first analysis run a few parameters need to be adjusted accordingly in the "config.yml" file.
+Please make sure to at least:
+1. Adjust the _result_dir_ and _data_dir_ directories for your prefered output and input/download locations respectively
+2. If your data contain an adapter, adjust the _trim_options_ parameter to include " -a {ADAPTER_SEQUENCE} " providing the actual adapter sequence to be trimmed
+3. Select the prefered _aligner_, _quantifier_ tools from the available options
+4. Provide an _alignment_index_dir_ containing the genome index created using the selected _aligner_ (even an empty directory if you have no index to provide, so that the index is created in this directory)
+5. Provide an _annotation_file_
+6. If you have no index, provide the genome_fasta and genome_sizes_file (info on how to create one can be found on the [Alignment module](#alignment-module))
 
 The general configuration options include:
 - The absolute or relative (from Snakefile) directory of the "samples.csv" file, the results directory where the results are saved and finally the data directory where the sample data file inputs are expected to be.
@@ -51,6 +48,18 @@ The _**trimmed .fastq files**_ and _**all .bam files**_ are progressively delete
 
 `snakemake --use-conda --notemp --cores {number_of_cores}`
 
+## USAGE
+Open a new terminal located inside the DIANA-RSeq directory.
+
+Test everything is working correctly using the command:
+
+`snakemake --use-conda -n`
+
+The above command executes a "dry-run" only showing the Snakemake rules that will be run without actually running them (see [Snakemake documentation](https://snakemake.readthedocs.io/en/stable/index.html) for more on dry-runs).
+
+Once you have made the proper configurations explained below, run your analysis using the command below by providing the desired number of cores to be utilized:
+
+`snakemake --use-conda --cores {number_of_cores}`
 
 ## MODULES
 
