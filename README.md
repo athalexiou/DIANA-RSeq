@@ -32,7 +32,7 @@ Please make sure to at least:
 3. Select the prefered _aligner_, _quantifier_ tools from the available options
 4. Provide an _alignment_index_dir_ containing the genome index created using the selected _aligner_ (even an empty directory if you have no index to provide, so that the index is created in this directory)
 5. Provide an _annotation_file_
-6. If you have no index, provide the genome_fasta and genome_sizes_file (info on how to create one can be found on the [Alignment module](#alignment-module)). We propose the use of [Gencode genome and annotation for human analysis](https://www.gencodegenes.org/human/).
+6. If you have no index, provide the genome_fasta and genome_sizes_file (info on how to create one can be found on the [Alignment module](#alignment-module)). We propose the use of [Gencode genome and annotation for human data analysis](https://www.gencodegenes.org/human/).
 
 The general configuration options include:
 - The absolute or relative (from Snakefile) directory of the "samples.csv" file, the results directory where the results are saved and finally the data directory where the sample data file inputs are expected to be.
