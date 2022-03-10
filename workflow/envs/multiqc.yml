@@ -3,4 +3,4 @@ channels:
   - conda-forge
   - main
 dependencies:
-  - multiqc = 1.10
+  - multiqc = 1.12
