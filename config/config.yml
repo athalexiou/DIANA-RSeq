@@ -12,7 +12,7 @@ fqsuffix: fastq # E.g for a file named "SRR583892_1.fastq" the fqsuffix is fastq
 ### DATA ACQUISITION MODULE ### Input: sample_id from samples_file
 getdata: true  # Flag to perform the Data Acquisition step using SRA-tools or not. This step will download the samples from SRA in the data_dir
 
-getdata_options: "-X 50000" # Optional parameters for SRA-tools (v2.10.1), for available options please visit the SRA-tools documentation
+getdata_options: " " # Optional parameters for SRA-tools (v2.10.1) (e.g. -X 50000 to download only the first 50k reads per sample), for available options please visit the SRA-tools documentation
 
 
 ### PRE-PROCESS MODULE ### Expected Input-SE: {data_dir}/{sample_id}.{fqsuffix}.gz | Input-PE: {data_dir}/{sample_id}_{fqext1}.{fqsuffix}.gz , {data_dir}/{sample_id}_{fqext2}.{fqsuffix}.gz   (sample_id from samples_file)
